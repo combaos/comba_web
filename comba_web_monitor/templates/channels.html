@@ -1,0 +1,51 @@
+<h3>{{ _('Channels') }}</h3>
+<table class="table table-striped channels">
+	<tr>
+		<th>{{ _('Channel') }}</th>
+		<th>{{ _('State') }}</th>
+		<th>{{ _('Tracks') }}</th>
+	</tr>
+    {% for channel, data in channels %}
+
+    <tr>
+	<td>{{ channel }}</td>
+	<td>
+	<ul class="channel-state">
+		<li>
+            {% if data.state.selected == 'false' %}{{ _('Off') }}{% else %}<span class="active">{{ _('On') }}</span>{% endif %}
+		</li>
+		<li>
+			{{ _('Volume') }}: {{ data.state.volume }}
+		</li>
+		<li>
+			{{ _('Remaining') }} {{ data.state.remaining }}
+		</li>
+	</ul>
+	</td>
+	<td>
+		{% if data.tracks|length  %}
+		<ul class="channel-tracks">
+            {% for track in data.tracks %}
+				<li>
+                    {% if track.title %}
+                    <strong>{{ track.title }}:</strong>
+                    {% else %}
+                    <strong>{{ _('Unknown') }}</strong>
+                    {% endif %}
+                    {% if track.start %}
+                        {{ track.start }}
+                    {% endif %}
+                </li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			<span class="notracks">{{ _('No tracks loaded') }}</span>
+		{% endif %}
+
+	</td>
+
+	</tr>
+{% endfor %}
+</table>
+
+

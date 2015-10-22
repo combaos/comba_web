@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Monitor{% endblock %}
+{% block customcss %}<link rel="stylesheet" href="{% static 'css/monitor.css' %}"  type="text/css">{% endblock %}
+{% block pagetitle %}{{ _('Monitor') }}{% endblock %}
+{% block body %}
+        <ul class="nav nav-tabs" role="tablist">
+			<li><a href="/" role="tab">Home</a></li>
+			<li class="active"><a href="#system-tab" id="getsystemdata" role="tab" data-toggle="tab">{{ _('System') }}</a></li>
+			<li><a href="#data-tab" id="getalldata" role="tab" data-toggle="tab">{{ _('Channels') }}</a></li>
+			<li><a href="#schedulerdata-tab" id="getschedulerdata" role="tab" data-toggle="tab">{{ _('Scheduler Jobs') }}</a></li>
+			<li><a href="#streaming-tab" id="getstreamingdata" role="tab" data-toggle="tab">{{ _('Streaming') }}</a></li>
+			<li>
+  				<a class="btn btn-link dropdown-toggle"  data-toggle="dropdown">{{ _('Logs') }}
+  					<span class="caret"></span>
+				</a>
+  				<ul class="dropdown-menu" role="tablist">
+					<li id="scheduler-li"><a href="#scheduler-tab" id="getscheduler" role="tab" data-toggle="tab">{{ _('Scheduler') }}</a></li>
+    				<li id="controller-li"><a href="#controller-tab" id="getcontroller" role="tab" data-toggle="tab">{{ _('Controller') }}</a></li>
+					<li id="monitor-li"><a href="#monitor-tab" id="getmonitor" role="tab" data-toggle="tab">{{ _('Monitor') }}</a></li>
+  				</ul>
+			</li>
+		</ul>
+			<div class="tab-content">
+			<div class="tab-pane fade in active" id="system-tab">
+					<div id="system-data">
+						{% include 'sysinfo.html' %}
+					</div>
+				</div>
+				<div class="tab-pane fade" id="scheduler-tab">
+					<div id="scheduler"></div>
+				</div>
+				<div class="tab-pane fade" id="controller-tab">
+					<div id="controller"></div>
+				</div>
+				<div class="tab-pane fade" id="monitor-tab">
+					<div id="monitor"></div>
+				</div>
+				<div class="tab-pane fade" id="data-tab">
+					<div id="controller-data"></div>
+				</div>
+				<div class="tab-pane fade" id="schedulerdata-tab">
+					<div id="scheduler-data"></div>
+				</div>
+				<div class="tab-pane fade" id="streaming-tab">
+					<div id="streaming-data"></div>
+				</div>
+			</div>
+{% endblock %}
+{% block customjs %}
+	<script src="{% static 'js/lib/jquery-1.10.2.min.js' %}"></script>
+	<script src="{% static 'js/lib/bootstrap.min.js' %}"></script>
+	<script>
+
+function formatJobs(data, app) {
+	//var html = "<ul class=\"showcase\">";
+	var html = "";
+	$.each(data, function( index, job ) {
+		console.info(job)
+		var level = job['level'] ? job['level'] : '';
+
+		var code = job['code'] ? job['code'] : '';
+		html = html + '<div class="task">';
+		if (job['microtime']) {
+			var timeStr = new Date(parseFloat(job['microtime']) * 1000).toLocaleString();
+			html = html + '<i>Zeit: ' + timeStr  + '</i>'
+		}
+
+		html = html + '<h3><task-title>'+ app + '</task-title> Task: ' + job['job'] +'</h3>';
+		html = html + '<div class="description"><strong>Message:</strong> '+job['message'] +'</div>';
+		if (job['level'] == 'info' || job['level'] == 'success') {
+			var bclass = 'bg-' + job['level'];
+			var erg = 'wurde mit Erfolg abgeschlossen'
+		}
+		if (job['level'] == 'warning' ) {
+			var bclass = 'bg-'+ job['level'];
+			var erg = 'gab Warnmeldung aus. Status nicht kritisch.'
+		}
+		if (job['level'] == 'error' ) {
+			var bclass = 'bg-'+ job['level'];
+			var erg = 'gab Fehlermeldung aus. Fehler muss behoben werden.'
+		}
+		if (job['level'] == 'fatal' ) {
+			var bclass = 'bg-danger';
+			var erg = 'ist mit kritischem Fehler abgebrochen. Fehler muss dringend behoben werden.'
+		}
+		html = html + '<div class="show-job '+bclass+'">'
+		html = html + '<div class="result"><strong>Resultat:</strong> Der Task <em>"'+ job['job'] + '"</em> ' + erg + ' (Errorcode #' + code +')</div>';
+		console.info(job['value']);
+		if (job['value'] && (typeof job['value']=== 'object')) {
+			var info = job['value']
+			html = html + '<div class="details"><h4>Details:</h4><ul class="details">';
+			$.each(job['value'], function( key, val) {
+				html = html + '<li><strong>'+ key +':</strong> '+ val +'</li>';
+			});
+			html = html + '</ul></div>';
+		}
+		html = html + '</div></div>'
+	});
+	//html = html + "</ul>";
+	return html;
+}
+function showlogs(app) {
+     var url='{% url 'monitor' %}' + 'events/' + app + '/'
+
+	 jQuery.ajax ({
+		 url: url,
+		  cache: false,
+		  success: function (data) {
+		   jQuery('#' + app).html(formatJobs(data, app));
+		   jQuery('#' + app + '-tab').tab('show')
+		  },
+		  error: function () {
+			  jQuery('#' + app).html('<strong>Error</strong>');
+		  }
+   });
+}
+
+jQuery('#getscheduler').click(function() {
+	jQuery('#controller-li').removeClass('active')
+	jQuery('#monitor-li').removeClass('active')
+	showlogs('scheduler')
+});
+
+jQuery('#getcontroller').click(function(e) {
+	jQuery('#scheduler-li').removeClass('active')
+	jQuery('#monitor-li').removeClass('active')
+	showlogs('controller')
+});
+
+jQuery('#getmonitor').click(function(e) {
+	jQuery('#scheduler-li').removeClass('active')
+	jQuery('#controller-li').removeClass('active')
+	showlogs('monitor')
+});
+
+jQuery('#getalldata').click(function() {
+	jQuery.ajax ({
+		 url: '{% url 'monitor' %}' + 'channels/',
+		  cache: false,
+		  success: function (response) {
+		   jQuery('#controller-data').html(response.data);
+
+		  },
+		  error: function () {
+			  jQuery('#controller-data').html('<strong>Error</strong>');
+		  }
+  });
+});
+
+jQuery('#getschedulerdata').click(function() {
+	jQuery.ajax ({
+		 url: '{% url 'monitor' %}' + 'scheduler/',
+		  cache: false,
+		  success: function (response) {
+		   jQuery('#scheduler-data').html(response.data);
+
+		  },
+		  error: function () {
+			  jQuery('#scheduler-data').html('<strong>Error</strong>');
+		  }
+  });
+});
+
+jQuery('#getsystemdata').click(function() {
+	jQuery.ajax ({
+		 url: '{% url 'monitor' %}' + 'sysinfo/',
+		  cache: false,
+		  success: function (response) {
+		   jQuery('#system-data').html(response.data);
+
+		  },
+		  error: function () {
+			  jQuery('#system-data').html('<strong>Error</strong>');
+		  }
+  });
+});
+jQuery('#getstreamingdata').click(function() {
+	jQuery.ajax ({
+		 url: '{% url 'monitor' %}' + 'stream/',
+		  cache: false,
+		  success: function (response) {
+		   jQuery('#streaming-data').html(response.data);
+
+		  },
+		  error: function () {
+			  jQuery('#streaming-data').html('<strong>Error</strong>');
+		  }
+  });
+});
+</script>
+{% endblock %}

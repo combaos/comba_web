@@ -1,0 +1,77 @@
+<div>
+	<h2>System</h2>
+	<table class="table table-bordered">
+		<tr>
+			<th>{{ _('Load') }}</th>
+			<th>{{ _('Free Space') }}</th>
+		</tr>
+		<tr>
+			<td>{{ load }}</td>
+			<td>{{ diskfree }}</td>
+		</tr>
+	</table>
+</div>
+
+<div class="row-fluid">
+	<h2>{{ _('Modules') }}</h2>
+	{% for state in componentStates %}
+	<div class="col-sm-4 col-md-3 col-lg-2">
+		<div id="controller-alive" class="alive {% if state.state %}bg-success{% else %}bg-danger{% endif %}">
+			<div class="center-block">
+				<h4>{{ state.title }}</h4>
+				<p>{% if state.state %}
+                        {{ state.title }} is alive
+                    {% else %}
+                        {{ state.title }} is down
+                    {% endif %}
+                    </p>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+<div class="clearfix"></div>
+<div>
+	<table class="table table-striped">
+		<tr>
+		<th>{{ _('Playlist Status') }}</th>
+		<td>
+			{% if playerState %}
+					<div><strong>{{ _('File') }}:</strong> {{ playerState.file }}</div>
+					    {% if not playerState.complete %}
+						<div class="text-warning">
+							<strong>{{ _('Warning: recording was interrupted at') }} {{ playerState.recorded }}%!!!</strong>
+						</div>
+					{% endif %}
+			{% else %}
+                {{ _('Playlist not playing') }}
+
+			{% endif %}
+			</td>
+			<td>
+                {% if playerState %}
+				    {{ _('Next event') }}: <i>play audio <strong>{{ trackStart.location }}</strong> at {{ trackStart.starts }}</i>
+                {% else %}
+                    {{ _('Next Start') }} {{ playlistStart }}
+                {% endif %}
+			</td>
+		</tr>
+		<tr>
+			<th width="20%">{{ _('Recorder Status') }}</th>
+			<td>{% if recorderState %}
+				<div class="center-block text-center">{{ recorderState.file }}</div>
+				<div class="clearfix"></div>
+				<div class="progress">
+					<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{ recorderState.recorded }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ recorderState.recorded }}%;">
+            {{ recorderState.recorded }}%
+		</div>
+				</div>
+    {% else %}
+    {{ _('Not recording') }}
+	{% endif %}</td>
+	<td>
+				{{ _('Next event') }}: <i>record <strong>{{ recordStart.location }}</strong> at {{ recordStart.starts }}</i>
+		</td>
+		</tr>
+	</table>
+</div>

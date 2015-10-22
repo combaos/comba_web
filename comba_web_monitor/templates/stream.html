@@ -1,0 +1,78 @@
+<h3>Streaming</h3>
+<div class="info"><span class="text-info">{{ message }}</span></div>
+{% for mount in mounts %}
+<div>
+	<h4>{{ _('Current running title') }}: {{ mount.Title }}</h4>
+</div>
+<table class="table table-striped channels">
+	<tbody>
+
+	<tr>
+		<th>{{ _('ListenURL') }}</th>
+		<td>{{ mount.ListenURL }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('Mountpoint') }}</th>
+		<td>{{ mount.Name }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('StreamStart') }}</th>
+		<td>{{ mount.StreamStart }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('AudioInfo') }}</th>
+		<td>{{ mount.AudioInfo }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('Genre') }}</th>
+		<td>{{ mount.Genre }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('ListenerCount') }}</th>
+		<td>{{ mount.ListenerCount }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('ListenerPeak') }}</th>
+		<td>{{ mount.ListenerPeak }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('Public') }}</th>
+		<td>{{ mount.Public }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('ServerDescription') }}</th>
+		<td>{{ mount.ServerDescription }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('ServerName') }}</th>
+		<td>{{ mount.ServerName }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('ServerType') }}</th>
+		<td>{{ mount.ServerType }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('ServerURL') }}</th>
+		<td>{{ mount.ServerURL }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('SlowListeners') }}</th>
+		<td>{{ mount.SlowListeners }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('SourceIP') }}</th>
+		<td>{{ mount.SourceIP }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('TotalBytesRead') }}</th>
+		<td>{{ mount.TotalBytesRead  }}</td>
+	</tr>
+	<tr>
+		<th>{{ _('TotalBytesSent') }}</th>
+		<td>{{ mount.TotalBytesSent }}</td>
+	</tr>
+	</tbody>
+</table>
+{% endfor %}
+
+

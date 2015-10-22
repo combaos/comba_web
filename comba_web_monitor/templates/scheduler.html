@@ -1,0 +1,15 @@
+<h3>{{ _('Scheduler Jobs') }}</h3>
+<table class="table table-striped scheduler-jobs">
+<tr>
+	<th>{{ _('Job') }}</th>
+	<th>{{ _('Time') }}</th>
+	<th>{{ _('Until') }}</th>
+</tr>
+{% for job in jobs %}
+	<tr>
+		<td>{{ job.job }}</td>
+        <td>{{ job.time }}</td>
+        <td>{{ job.until }}</td>
+	</tr>
+{% endfor %}
+</table>

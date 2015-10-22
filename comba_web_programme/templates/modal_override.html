@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load comba_wp_tags %}
+<html lang="de">
+    <head>
+        <link rel="shortcut icon"  href="{% static 'img/favicon.ico' %}" />
+        <link rel="stylesheet" href="{% static 'css/lib/bootstrap.min.css' %}"  type="text/css" />
+        <link href="http://fonts.googleapis.com/css?family=Ubuntu:400,300italic"  rel="stylesheet" type="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		{% block customcss %}{% endblock %}
+        <title>Comba - {% block title %}{% endblock %}</title>
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+<body>
+
+      <div class="modal-body">
+<form id="modalSearchForm" classs="form-horizontal" method="POST" action="{% url 'programme' orig_id %}">{% csrf_token %}
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="search">{{ _('Text/Name') }}:</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="search" name="search" type="text" value="{{ query.search }}" />
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-sm-12 form-group"><h4>{{ _('Date Search') }}</h4></div>
+    <div class="form-group">
+        <div>
+            <label class="col-sm-2 control-label" for="from">{{ _('from') }}:</label>
+            <div class="col-sm-4">
+                <input class="datepicker form-control" id="from" placeholder="2014-01-01" name="from" type="text" value="{{ query.from }}" />
+            </div>
+            <label class="col-sm-2 control-label" for="to">{{ _('to') }}:</label>
+            <div class="col-sm-4">
+                <input class="datepicker form-control" id="to" placeholder="2014-12-31"  name="to" type="text" value="{{ query.to }}" />
+            </div>
+         </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="col-sm-offset-2 col-sm-10">
+        <br />
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group">
+                <button  class="btn btn-default" type="submit" value="fo"> <span class="glyphicon glyphicon-search"></span> {{ _('Search') }}</button>
+                <button  id="reset_button" class="btn btn-default" type="button" value="reset"> <span class="glyphicon glyphicon-remove"> </span>{{ _('Reset') }}</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <br />
+<uL class="list-group">
+ {% for event in eventlist %}
+    <li id="li-{{ event.id }}" class="list-group-item">
+        <div class="col-md-6">
+            <h3><a style="cursor:hand;cursor:pointer" data-origid="{{ orig_id }}" data-eventid="{{ event.id }}" class="overwrite-close-btn">{{ event.title }}</a></h3>
+            <div>{{ event.start | formatdate }} - {{ event.end | formatdate }}</div>
+            <div>{% if event.rerun %}{{ _('Repetition of') }} {{ event.replay_of_datetime | formatdate }}{% endif %}</div>
+            <div>{{ event.subject }}</div>
+         </div>
+<div class="clearfix"></div>
+    </li>
+ {% endfor %}
+</uL>
+
+</form>
+
+</div>
+<script src="{% static 'js/lib/jquery-1.10.2.min.js' %}"></script>
+<script src="{% static 'js/lib/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/lib/jquery-ui.min.js' %}"></script>
+<script>
+
+
+
+function overwriteBroadcast(orig_id, replace_id) {
+
+
+    $('#myModal').modal('hide')
+    window.location.reload(true)
+}
+
+    $(function() {
+         $('.overwrite-close-btn').click(function(e) {
+            e.preventDefault();
+            var replace_id = $(this).attr('data-eventid');
+            var orig_id    = $(this).attr('data-origid');
+            console.log(orig_id + " mit " + replace_id + "ueberschreiben")
+            url = "{% url 'override' %}?origid=" + orig_id + "&replaceid=" + replace_id;
+            console.log(url)
+            jQuery.ajax ({
+                url: url,
+		        cache: false,
+		        complete: function (data) {
+		           window.parent.closeModal();
+                }
+		    });
+         });
+
+         $('#reset_button').click(function(e){
+            $('#from').val("")
+            $('#to').val("")
+            $('#search').val("")
+            $('#searchForm').submit()
+        });
+
+        $('.pagination .link').click(function(ev){
+            ev.preventDefault();
+            if (!$(this).attr('data-page')) {
+                return;
+            }
+            $('#form-page').val($(this).attr('data-page'));
+            $('#searchForm').submit();
+        });
+        $( ".datepicker" ).datepicker({dateFormat: "yy-mm-dd"});
+    });
+
+</script>
+</body>

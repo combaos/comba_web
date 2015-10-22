@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% load comba_wp_tags %}
+{% block title %}{% endblock %}
+{% block pagetitle %}{{ _('Preproduction Title')}}{% endblock %}
+{% block body %}
+
+
+<div class="well">
+    <div class="pull-right"><a href="{% url 'programme' %}#li-{{ event.id }}" class="btn btn-default">{{ _('Cancel') }}</a></div>
+
+    <div>
+        <h3>{{ event.title }}</h3>
+
+        <div>{{ event.start }} - {{ event.end }}</div>
+        <div>{% if event.rerun %}{{ _('Repetition of') }} {{ event.replay_of_datetime }}{% endif %}</div>
+
+        <div>
+            <h4>{{ _('Upload Preproduction')}}</h4>
+
+            <form class="form-inline" method=POST enctype=multipart/form-data action="{% url 'preprod_upload' %}">{% csrf_token %}
+                <div class="form group">
+                    <input type="hidden" name="returnid" value="{{ event.id }}"/>
+                    <div class="form-control"><input  type="file" name="audio"/></div>
+                    <input class="form-control input-sm" type="submit" name="submit" value="{{ _('Upload')}}"/>
+                    <br />
+                </div>
+            </form>
+            <br />
+            <h4>{{ _('Download Remote Url')}}</h4>
+             <form class="form-inline" method=POST enctype=multipart/form-data action="{% url 'preprod_download_url'  %}">{% csrf_token %}
+                <div class="form group">
+                    <input type="hidden" name="returnid" value="{{ event.id }}"/>
+                    <input class="form-control" id="audiourl" type="text" name="audiourl"/> <button type="submit" class="btn btn-default">{{ _('Download')}}</button>
+                    <br />
+                </div>
+
+            </form>
+            {% if message %}
+            <div class="center-block text-danger">{{ message }}</div>
+            {% endif %}
+           <div class="clearfix"><br /></div>
+        </div>
+        <div>
+            <ul class="list-group">
+                {% for override in overrides %}
+                <li class="list-group-item">{{ override.location|basename }} ({{ override.ordering }})
+                    <div class="pull-right btn-toolbar" role="toolbar">
+                        <div class="btn-group">
+                            {% if not forloop.last %}
+                            <a  href="{% url 'preprod_order' override.id  'down' %}" class="btn btn-default btn-xs" type="submit" value="fo"> <span style="color:green" class="glyphicon glyphicon-chevron-down"></span> </a>
+                            {% endif %}
+                            {% if not forloop.first %}
+                            <a href="{% url 'preprod_order' override.id  'up' %}" class="btn btn-default btn-xs" type="submit" value="fo"> <span style="color:green" class="glyphicon glyphicon-chevron-up"></span> </a>
+                            {% endif %}
+                        </div>
+                        <div class="btn-group">
+                            <a  href="{% url 'preprod_delete' event.id override.id %} " id="reset_button" class="btn btn-default btn-xs" type="button" value="reset"> <span style="color:red" class="glyphicon glyphicon-remove"> </span></a>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" style="width: {{ green }}%">
+                    <span>{{ procent }}%</span>
+                </div>
+                <div class="progress-bar progress-bar-danger" style="width: {{ red }}%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+{% endblock %}
