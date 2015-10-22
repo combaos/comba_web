@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="de">
+    <head>
+        <link rel="shortcut icon"  href="{% static 'img/favicon.ico' %}" />
+        <link rel="stylesheet" href="{% static 'css/lib/bootstrap.min.css' %}"  type="text/css" />
+        <link href="http://fonts.googleapis.com/css?family=Ubuntu:400,300italic"  rel="stylesheet" type="text/css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		{% block customcss %}{% endblock %}
+        <title>Comba - {% block title %}{% endblock %}</title>
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+<body>
+	<div id="header" class="container center-block">
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<img class="img-responsive" src="{% static "img/comba.png" %}" />
+		</div>
+		<div class="hidden-xs col-sm-6 col-md-8"></div>
+		<div class="clearfix"></div>
+	</div>
+	<div id="content">
+		<div class="container">
+            <div class="row">
+                <div class="col-md-12"><h1>{% block pagetitle %}Seitentitel{% endblock %}</h1></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-md-push-9">
+			    	<ul class="list-group">
+  				    	<a class="list-group-item{% if request.path == '/'  %} active{% endif %}" href="/">{{ _('Home') }}</a>
+                        <a class="list-group-item{% if request.path == '/programme/'  %} active{% endif %}" href="{% url 'programme' %}"><strong>{{ _('Broadcasts') }}</strong></a>
+                        <a class="list-group-item{% if request.path == '/monitor/' %} active{% endif %}" href="{% url 'monitor' %}"><strong>{{ _('Monitor') }}</strong></a>
+			    	</ul>
+				</div>
+			    <div class="col-md-9 col-md-pull-3">
+				    {% block body %}
+                    <div>This heading is defined in the parent.</div>
+                    {% endblock %}
+			    </div>
+			</div>
+		</div>
+	</div>
+{% block customjs %}{% endblock %}
+</body>
+</html>

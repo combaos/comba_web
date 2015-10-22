@@ -1,0 +1,46 @@
+.show-job {
+	border: 1px solid black;
+	margin: 25px;
+	padding: 10px;
+}
+
+.bg-info {
+	background-color: #99c0c0;
+}
+
+.bg-danger {
+	background-color: #CD5B45;
+}
+
+.bg-warning {
+	background-color: #f2dede;
+}
+
+.bg-error {
+	background-color: #E9967A;
+}
+
+.bg-success {
+	background-color: #C1FFC1;
+}
+
+.task {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 2px dotted #c0c0c0;
+}
+
+task-title {
+	text-transform: capitalize;
+}
+.well-dark {
+	background-color:#c0c0c0;
+}
+.alive {
+	min-height:80px;
+	padding:15px;
+	margin-bottom:15px;
+}
+.alive .center-block{
+	text-align:center;
+}
