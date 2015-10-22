@@ -10,7 +10,6 @@ from bson.objectid import ObjectId
 Model - general information about system and component states
 """
 
-
 class ModelSysInfo(object):
     # ------------------------------------------------------------------------------------------#
     def __init__(self):
