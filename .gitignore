@@ -1,3 +1,6 @@
 *.pyc
 env
 .idea
+comba_lib
+comba_clientapi
+db,sqlite3

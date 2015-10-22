@@ -2,7 +2,7 @@ __author__ = 'michel'
 from django.conf import settings
 from comba_lib.base.schedulerconfig import CombaSchedulerConfig
 from comba_lib.service.icecast import IcecastServer
-from comba_clientapi.python.zmqadapter import ClientZMQAdapter
+from comba_clientapi.zmqadapter import ClientZMQAdapter
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 from .models import *
