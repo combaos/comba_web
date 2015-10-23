@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse
 import simplejson
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import get_language_info
 
 """
 Web list programmes and search
@@ -25,6 +26,9 @@ def programme(request, eventid="", message=''):
     datefrom = ""
     dateto = ""
 
+    li = get_language_info('de')
+    print(li['name'], li['name_local'], li['bidi'])
+    print request.LANGUAGE_CODE
     query = {'search':'', 'from':'','to':'','page':''}
 
     if request.method == 'POST':

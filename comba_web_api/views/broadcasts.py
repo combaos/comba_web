@@ -63,7 +63,6 @@ class BroadcastItem(CombaApiView):
             if args.get('identifier'):
                 queries = queries & Q(identifier = args.get('identifier'))
 
-
             if args.get('programme_id'):
                 queries = queries & Q(programme_id=args.get('programme_id'))
 

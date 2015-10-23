@@ -7,8 +7,14 @@ class isServiceUser(permissions.BasePermission):
     """
 
     def has_permission(self, request, view):
+
+        if request.user.is_superuser:
+            return True
+
         for group in request.user.groups.all():
             if group.name == "serviceuser":
+                return True
+            if group.name == "webuser":
                 return True
         else:
             return False

@@ -1,0 +1,222 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-23 18:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:371
+msgid "Could not store file to %(location)"
+msgstr ""
+
+#: models.py:387 models.py:405
+msgid "Wrong Filetype"
+msgstr ""
+
+#: templates/channels.html:1 templates/monitor.html:10
+msgid "Channels"
+msgstr ""
+
+#: templates/channels.html:4
+msgid "Channel"
+msgstr ""
+
+#: templates/channels.html:5
+msgid "State"
+msgstr ""
+
+#: templates/channels.html:6
+msgid "Tracks"
+msgstr ""
+
+#: templates/channels.html:15
+msgid "Off"
+msgstr ""
+
+#: templates/channels.html:15
+msgid "On"
+msgstr ""
+
+#: templates/channels.html:18
+msgid "Volume"
+msgstr ""
+
+#: templates/channels.html:21
+msgid "Remaining"
+msgstr ""
+
+#: templates/channels.html:33
+msgid "Unknown"
+msgstr ""
+
+#: templates/channels.html:42
+msgid "No tracks loaded"
+msgstr ""
+
+#: templates/monitor.html:5 templates/monitor.html.py:20
+msgid "Monitor"
+msgstr ""
+
+#: templates/monitor.html:9
+msgid "System"
+msgstr ""
+
+#: templates/monitor.html:11 templates/scheduler.html:1
+msgid "Scheduler Jobs"
+msgstr ""
+
+#: templates/monitor.html:12
+msgid "Streaming"
+msgstr ""
+
+#: templates/monitor.html:14
+msgid "Logs"
+msgstr ""
+
+#: templates/monitor.html:18
+msgid "Scheduler"
+msgstr ""
+
+#: templates/monitor.html:19
+msgid "Controller"
+msgstr ""
+
+#: templates/scheduler.html:4
+msgid "Job"
+msgstr ""
+
+#: templates/scheduler.html:5
+msgid "Time"
+msgstr ""
+
+#: templates/scheduler.html:6
+msgid "Until"
+msgstr ""
+
+#: templates/stream.html:5
+msgid "Current running title"
+msgstr ""
+
+#: templates/stream.html:11
+msgid "ListenURL"
+msgstr ""
+
+#: templates/stream.html:15
+msgid "Mountpoint"
+msgstr ""
+
+#: templates/stream.html:19
+msgid "StreamStart"
+msgstr ""
+
+#: templates/stream.html:23
+msgid "AudioInfo"
+msgstr ""
+
+#: templates/stream.html:27
+msgid "Genre"
+msgstr ""
+
+#: templates/stream.html:31
+msgid "ListenerCount"
+msgstr ""
+
+#: templates/stream.html:35
+msgid "ListenerPeak"
+msgstr ""
+
+#: templates/stream.html:39
+msgid "Public"
+msgstr ""
+
+#: templates/stream.html:43
+msgid "ServerDescription"
+msgstr ""
+
+#: templates/stream.html:47
+msgid "ServerName"
+msgstr ""
+
+#: templates/stream.html:51
+msgid "ServerType"
+msgstr ""
+
+#: templates/stream.html:55
+msgid "ServerURL"
+msgstr ""
+
+#: templates/stream.html:59
+msgid "SlowListeners"
+msgstr ""
+
+#: templates/stream.html:63
+msgid "SourceIP"
+msgstr ""
+
+#: templates/stream.html:67
+msgid "TotalBytesRead"
+msgstr ""
+
+#: templates/stream.html:71
+msgid "TotalBytesSent"
+msgstr ""
+
+#: templates/sysinfo.html:5
+msgid "Load"
+msgstr ""
+
+#: templates/sysinfo.html:6
+msgid "Free Space"
+msgstr ""
+
+#: templates/sysinfo.html:16
+msgid "Modules"
+msgstr ""
+
+#: templates/sysinfo.html:37
+msgid "Playlist Status"
+msgstr ""
+
+#: templates/sysinfo.html:40
+msgid "File"
+msgstr ""
+
+#: templates/sysinfo.html:43
+msgid "Warning: recording was interrupted at"
+msgstr ""
+
+#: templates/sysinfo.html:47
+msgid "Playlist not playing"
+msgstr ""
+
+#: templates/sysinfo.html:53 templates/sysinfo.html.py:73
+msgid "Next event"
+msgstr ""
+
+#: templates/sysinfo.html:55
+msgid "Next Start"
+msgstr ""
+
+#: templates/sysinfo.html:60
+msgid "Recorder Status"
+msgstr ""
+
+#: templates/sysinfo.html:70
+msgid "Not recording"
+msgstr ""
+
+#: views.py:100
+msgid "No Stream available"
+msgstr ""

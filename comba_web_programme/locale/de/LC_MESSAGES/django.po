@@ -1,0 +1,245 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-23 18:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/modal_override.html:22 templates/programme.html:11
+msgid "Text/Name"
+msgstr ""
+
+#: templates/modal_override.html:28 templates/programme.html:17
+msgid "Date Search"
+msgstr "Datumssuche"
+
+#: templates/modal_override.html:31 templates/programme.html:20
+msgid "from"
+msgstr "von"
+
+#: templates/modal_override.html:35 templates/programme.html:24
+msgid "to"
+msgstr "bis"
+
+#: templates/modal_override.html:47 templates/programme.html:37
+msgid "Search"
+msgstr "Suche"
+
+#: templates/modal_override.html:48 templates/programme.html:38
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: templates/modal_override.html:62 templates/preprod.html:17
+#: templates/programme.html:66 templates/programme.html.py:68
+msgid "Repetition of"
+msgstr "Wiederholung von"
+
+#: templates/preprod.html:6
+msgid "Preproduction Title"
+msgstr "Vorproduktion"
+
+#: templates/preprod.html:11 templates/programme.html:150
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: templates/preprod.html:20
+msgid "Upload Preproduction"
+msgstr "Vorproduktion hochladen"
+
+#: templates/preprod.html:26
+msgid "Upload"
+msgstr "Hochladen"
+
+#: templates/preprod.html:31
+msgid "Download Remote Url"
+msgstr "Audio-Webadresse eingeben und herunterladen"
+
+#: templates/preprod.html:35
+msgid "Download"
+msgstr ""
+
+#: templates/programme.html:7
+msgid "Search for broadcasts"
+msgstr "Suche nach Sendungen"
+
+#: templates/programme.html:17
+msgid "StreamStart"
+msgstr "Stream gestartet"
+
+#: templates/programme.html:72
+msgid "File"
+msgstr "Datei"
+
+#: templates/programme.html:85
+msgid "Preproduction"
+msgstr "Vorproduktion"
+
+#: templates/programme.html:95
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: templates/programme.html:95
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: views.py:166
+msgid "Upload Error"
+msgstr "Fehler beim Upload"
+
+#: views.py:173
+msgid "Upload empty"
+msgstr "Keine Datei hochgeladen"
+
+#: views.py:227
+msgid "Entry doesn't exist."
+msgstr "Eintrag existiert nicht"
+
+#: views.py:229
+msgid "Could not delete %(location)"
+msgstr "%(location) konnte nicht gelöscht werden"
+
+#~ msgid "Could not store file to %(location)"
+#~ msgstr "Datei konnte nicht nach %(location) gespeichert werden"
+
+#~ msgid "Wrong Filetype"
+#~ msgstr "Falscher Dateityp"
+
+#~ msgid "German"
+#~ msgstr "Deutsch"
+
+#~ msgid "English"
+#~ msgstr "Englisch"
+
+#~ msgid "Home"
+#~ msgstr "Start"
+
+#~ msgid "Broadcasts"
+#~ msgstr "Sendungen"
+
+#~ msgid "Monitor"
+#~ msgstr "Monitor"
+
+#~ msgid "Description"
+#~ msgstr "Beschreibung"
+
+#~ msgid ""
+#~ "Comba is a modular server-side system for automation of broadcast and "
+#~ "rebroadcasts for community radio."
+#~ msgstr ""
+#~ "Comba ist ein modulares serverseitiges System für Sendeautomation und -"
+#~ "wiederholung für Community Radios."
+
+#~ msgid "Unsufficient privileges"
+#~ msgstr "Keine ausreichenden Rechte"
+
+#~ msgid "Log in"
+#~ msgstr "Anmelden"
+
+#~ msgid "Your username and password didn"
+#~ msgstr "Username oder Passwort nicht gefunden"
+
+#~ msgid "Channels"
+#~ msgstr "Kanäle"
+
+#~ msgid "Channel"
+#~ msgstr "Kanal"
+
+#~ msgid "State"
+#~ msgstr "Status"
+
+#~ msgid "Tracks"
+#~ msgstr "Tracks"
+
+#~ msgid "Off"
+#~ msgstr "Aus"
+
+#~ msgid "On"
+#~ msgstr "An"
+
+#~ msgid "Volume"
+#~ msgstr "Lautstärke"
+
+#~ msgid "Remaining"
+#~ msgstr "Zeit verbleibend"
+
+#~ msgid "Unknown"
+#~ msgstr "Umbekannt"
+
+#~ msgid "No tracks loaded"
+#~ msgstr "Keine Tracks geladen"
+
+#~ msgid "Time"
+#~ msgstr "Zeit"
+
+#~ msgid "Until"
+#~ msgstr "Bis"
+
+#~ msgid "Current running title"
+#~ msgstr "Jetzt läuft"
+
+#~ msgid "ListenURL"
+#~ msgstr "URL zum Stream"
+
+#~ msgid "AudioInfo"
+#~ msgstr "Audio Information"
+
+#~ msgid "ListenerCount"
+#~ msgstr "Hörerzahl"
+
+#~ msgid "ListenerPeak"
+#~ msgstr "Höchste Hörerzahl"
+
+#~ msgid "Public"
+#~ msgstr "Öffentlich"
+
+#~ msgid "ServerDescription"
+#~ msgstr "Server Beschreibung"
+
+#~ msgid "ServerName"
+#~ msgstr "Server"
+
+#~ msgid "ServerType"
+#~ msgstr "Server Typ"
+
+#~ msgid "ServerURL"
+#~ msgstr "Server Url"
+
+#~ msgid "Free Space"
+#~ msgstr "Freier Speicherplatz"
+
+#~ msgid "Modules"
+#~ msgstr "Module"
+
+#~ msgid "Warning: recording was interrupted at"
+#~ msgstr "Achtung: Aufnahme wurde unterbrochen um"
+
+#~ msgid "Playlist not playing"
+#~ msgstr "Playlist angehalten"
+
+#~ msgid "Next event"
+#~ msgstr "Nächstes Ereignis"
+
+#~ msgid "Next Start"
+#~ msgstr "Nächster Start"
+
+#~ msgid "Recorder Status"
+#~ msgstr "Rekorder Status"
+
+#~ msgid "Not recording"
+#~ msgstr "Keine Aufnahme"
+
+#~ msgid "No Stream available"
+#~ msgstr "Es ist kein Stream verfügbar"

@@ -5,7 +5,6 @@ from rest_framework.response import Response
 from django.http import Http404
 from comba_web.models import ModelBroadcastEvent
 
-
 #------------------------------------------------------------------------------------------#
 
 class BroadcastOverride(CombaApiView):
@@ -47,7 +46,6 @@ class BroadcastOverride(CombaApiView):
     @apiParam {String} orig_id      Original Broadcast event ID.
     @apiParam {String} replace_id   Broadcast event replacement ID.
     """
-
 
     def getResponse(self, request, args):
         """
